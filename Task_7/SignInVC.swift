@@ -17,6 +17,10 @@ class SignInVC: UIViewController {
     
     @IBOutlet weak var signUpButton: UIButton!
     
+    @IBOutlet weak var showPassword: UIButton!
+    
+    @IBOutlet weak var passwordTextfield: UITextField!
+    
     //MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +31,18 @@ class SignInVC: UIViewController {
         
         googleSignInButton.layer.cornerRadius = googleSignInButton.frame.width/2
         
+        showPassword.addTarget(self, action: #selector(showPasswordTapped(_:)), for: .touchUpInside)
     }
 
+}
+
+extension SignInVC{
+    
+    //show Password Tapped
+    func showPasswordTapped(_ sender: UIButton){
+        
+        passwordTextfield.isSecureTextEntry = !passwordTextfield.isSecureTextEntry
+        
+    }
+    
 }

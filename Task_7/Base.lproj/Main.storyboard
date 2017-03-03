@@ -58,7 +58,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ChI-Yi-G4S">
                                                 <rect key="frame" x="54" y="94.5" width="213" height="54"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NIGHT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tyB-WL-wdR">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="πNIGHT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tyB-WL-wdR">
                                                         <rect key="frame" x="0.0" y="0.0" width="213" height="36"/>
                                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -138,15 +138,28 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gwn-ol-YD5">
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="-30" translatesAutoresizingMaskIntoConstraints="NO" id="JhF-8g-eGD">
                                                 <rect key="frame" x="0.0" y="45" width="280" height="35"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="2vD-3C-0nj"/>
-                                                </constraints>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                            </textField>
+                                                <subviews>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gwn-ol-YD5">
+                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="35"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="35" id="2vD-3C-0nj"/>
+                                                        </constraints>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssW-B4-dyJ">
+                                                        <rect key="frame" x="250" y="0.0" width="30" height="35"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="35" id="pIQ-uk-jgF"/>
+                                                            <constraint firstAttribute="width" constant="30" id="wMI-cM-VoD"/>
+                                                        </constraints>
+                                                        <state key="normal" title=" " backgroundImage="eye"/>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ibb-Bq-VLP">
                                                 <rect key="frame" x="0.0" y="90" width="280" height="10"/>
                                                 <constraints>
@@ -268,6 +281,8 @@
                     <connections>
                         <outlet property="fbSignInButton" destination="ldr-aY-CXb" id="4Qz-lo-ed3"/>
                         <outlet property="googleSignInButton" destination="wSD-ID-ZkX" id="Oue-uF-q3g"/>
+                        <outlet property="passwordTextfield" destination="gwn-ol-YD5" id="ffG-qA-CBs"/>
+                        <outlet property="showPassword" destination="ssW-B4-dyJ" id="gwu-wi-PWH"/>
                         <outlet property="signUpButton" destination="Aio-UJ-0Y4" id="98r-d5-5RB"/>
                     </connections>
                 </viewController>
@@ -318,7 +333,7 @@
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d7z-Cn-9mq">
                                                 <rect key="frame" x="0.0" y="135" width="280" height="35"/>
@@ -401,4 +416,7 @@
             <point key="canvasLocation" x="1432.5" y="353.34507042253523"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="eye" width="50" height="50"/>
+    </resources>
 </document>

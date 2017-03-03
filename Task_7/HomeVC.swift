@@ -10,60 +10,41 @@ import UIKit
 
 class HomeVC: UIViewController {
     
+    //properties
+    var signInPage = SignInVC()
+    var signUpPage = SignUpVC()
+    
     //MARK: outlets
     @IBOutlet weak var mainScrollView: UIScrollView!
-    
     @IBOutlet weak var displayView: UIView!
    
     @IBOutlet weak var signInButton: UIButton!
-    
     @IBOutlet weak var signUpButton: UIButton!
     
     @IBOutlet weak var buttonBottomLine: UIView!
-    
     @IBOutlet weak var bottomConstraintOfScrollView: NSLayoutConstraint!
     
     //MARK: View Life Cycle.
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        
-        mainScrollView.frame.size = CGSize(width: self.view.frame.width, height: 325)
+        // Do any additional setup after loading the view
 
         //instantiate signIn page
         guard let signInPage = self.storyboard?.instantiateViewController(withIdentifier: "SignInVCID") as? SignInVC else{ return
         }
-        signInPage.view.frame = CGRect(x: 0,
-                                       y: 0,
-                                       width: mainScrollView.frame.width,
-                                       height: mainScrollView.frame.height)
+        self.signInPage = signInPage
         
         //instantiate signUp page
         guard let signUpPage = self.storyboard?.instantiateViewController(withIdentifier: "SignUpVCID") as? SignUpVC else{ return
         }
-        signUpPage.view.frame = CGRect(x: mainScrollView.frame.width,
-                                       y: 0,
-                                       width: mainScrollView.frame.width,
-                                       height: mainScrollView.frame.height)
         
-        //adding child view controllers.
-        self.addChildViewController(signInPage)
-        self.addChildViewController(signUpPage)
-        
-        self.mainScrollView.contentSize = CGSize(width: mainScrollView.frame.width*2,
-                                                 height: mainScrollView.frame.height)
-        
-        //adding subviews to scrollview
-        self.mainScrollView.addSubview(signInPage.view)
-        self.mainScrollView.addSubview(signUpPage.view)
+        self.signUpPage = signUpPage
         
         //actions for signup/signin button.
         signInButton.addTarget(self, action: #selector(signInTapped(_:)), for: .touchUpInside)
         signUpButton.addTarget(self, action: #selector(signUpTapped(_:)), for: .touchUpInside)
         
-        signInPage.signUpButton.addTarget(self, action: #selector(signUpTapped(_:)), for: .touchUpInside)
-        signUpPage.logInButton.addTarget(self, action: #selector(signInTapped(_:)), for: .touchUpInside)
         
         //setting up delegate for scroll view
         mainScrollView.delegate = self
@@ -88,6 +69,40 @@ class HomeVC: UIViewController {
             
         })
 
+    }
+    
+    override func viewWillLayoutSubviews() {
+        
+        //frame size of main scroll view
+        mainScrollView.frame.size = CGSize(width: self.view.frame.width, height: 325)
+        
+        //frame for signIn page
+        signInPage.view.frame = CGRect(x: 0,
+                                       y: 0,
+                                       width: mainScrollView.frame.width,
+                                       height: mainScrollView.frame.height)
+        
+        //frame for signUp page
+        signUpPage.view.frame = CGRect(x: mainScrollView.frame.width,
+                                       y: 0,
+                                       width: mainScrollView.frame.width,
+                                       height: mainScrollView.frame.height)
+        
+        //adding child view controllers.
+        self.addChildViewController(signInPage)
+        self.addChildViewController(signUpPage)
+        
+        self.mainScrollView.contentSize = CGSize(width: mainScrollView.frame.width*2,
+                                                 height: mainScrollView.frame.height)
+        
+        //adding subviews to scrollview
+        self.mainScrollView.addSubview(signInPage.view)
+        self.mainScrollView.addSubview(signUpPage.view)
+
+        signInPage.signUpButton.addTarget(self, action: #selector(signUpTapped(_:)), for: .touchUpInside)
+        signUpPage.logInButton.addTarget(self, action: #selector(signInTapped(_:)), for: .touchUpInside)
+        
+        
     }
 
 }
